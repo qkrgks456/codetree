@@ -18,7 +18,7 @@ public class Main {
             }
         }
         int result = 0;
-        while(true){
+         while(true){
             // 다 0이라서 나누어지지 않는다면
             if(zeroCheck(graph)){
                 result = 0;
@@ -31,7 +31,7 @@ public class Main {
             int count = BFS(graph);
             result++;
             if(count >= 2) break;
-        }
+         }
         System.out.println(result);
 
     }
