@@ -21,17 +21,17 @@ public class Main {
             int k = Integer.parseInt(st.nextToken());
             String s = st.nextToken();
             int start = search(s, list);
-            // 만약 lower bound(이상)를 구했는데 그게 타겟 문자열보다 클경우
-            if(!list.get(start).startsWith(s)){
-                sb.append(-1);
-                continue;
-            }
             String result = "";
             boolean check = true;
             while(k != 0){
                 k--;
                 result = list.get(start);
                 start++;
+                // 만약 찾는것에서 이미 넘어갈경우
+                if(!result.startsWith(s)){
+                    check = false;
+                    break;
+                } 
                 if(start == list.size()) {
                     check = false;
                     break;
