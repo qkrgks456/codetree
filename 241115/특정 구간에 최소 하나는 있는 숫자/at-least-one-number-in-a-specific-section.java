@@ -21,7 +21,7 @@ public class Main {
         int start = 0;
         for(int end =0; end < nodeList.size(); end++){
             Node node = nodeList.get(end);
-            checkMap.put(node.value,checkMap.getOrDefault(checkMap.get(node.value),0) + 1);
+            checkMap.put(node.value,checkMap.getOrDefault(node.value,0) + 1);
             while(check(checkMap,checkSet)){
                 // 현재 시작점이랑 마지막점 구간 최솟값 넣기
                 int startIndex = nodeList.get(start).index;
