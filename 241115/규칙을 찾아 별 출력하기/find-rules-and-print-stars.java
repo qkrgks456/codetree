@@ -8,6 +8,11 @@ public class Main {
         n = Integer.parseInt(br.readLine());
         int num = (n -1) * 4 + 1;
         char[][] chars = new char[num][num];
+        for(int i = 0; i< num; i++){
+            for(int j = 0; j< num; j++){
+                chars[i][j] = ' ';
+            }
+        }
         recursion(n,chars,0);
         StringBuilder sb = new StringBuilder();
         for(int i =0; i< num; i++){
