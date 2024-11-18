@@ -16,14 +16,24 @@ public class Main {
         Collections.sort(list);
         int currentEnd = 3;
         int result = 0;
+        boolean check = true;
         for(Location location : list){
             if(location.start <= currentEnd && location.end >= currentEnd){
                 currentEnd = location.end;
                 result++;
             }
-            if(currentEnd >= 220) break;
+            if(currentEnd >= 220) {
+                check = true;
+                break;
+            } else {
+                check = false;
+            }
         }
-        System.out.println(result);
+        if(check){
+            System.out.println(result);
+        }else{
+            System.out.println(0);
+        }
     }
 
      static class Location implements Comparable<Location>{
