@@ -6,8 +6,9 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
         List<Location> list = new ArrayList<>();
-        for(int i =0; i<n;i++){
-            StringTokenizer st = new StringTokenizer(br.readLine());
+        String input;
+        while ((input = br.readLine()) != null) {
+            StringTokenizer st = new StringTokenizer(input);
             int start = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
             list.add(new Location(start, end - 1));
