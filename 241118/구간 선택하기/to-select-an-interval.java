@@ -11,29 +11,31 @@ public class Main {
             StringTokenizer st = new StringTokenizer(input);
             int start = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
-            list.add(new Location(start, end - 1));
+            list.add(new Location(start, end));
         }
         Collections.sort(list);
         int currentEnd = 3;
         int result = 0;
-        boolean check = true;
-        for(Location location : list){
-            if(location.start <= currentEnd && location.end >= currentEnd){
-                currentEnd = location.end;
-                result++;
+        int index =0;
+        while(currentEnd < 220){
+            int maxEnd = currentEnd;
+            
+            // 현재 덮을 수 있는 구간 찾기   
+            while (index < list.size() && list.get(index).start <= currentEnd) {
+                maxEnd = Math.max(maxEnd, list.get(index).end);
+                index++;
             }
-            if(currentEnd >= 220) {
-                check = true;
-                break;
-            } else {
-                check = false;
+            
+            if (maxEnd == currentEnd) {
+                System.out.println(0);
+                return;
             }
+            
+            currentEnd = maxEnd;
+            result++;
         }
-        if(check){
-            System.out.println(result);
-        }else{
-            System.out.println(0);
-        }
+        System.out.println(result);
+        
     }
 
      static class Location implements Comparable<Location>{
