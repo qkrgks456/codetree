@@ -1,5 +1,3 @@
-
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -19,27 +17,25 @@ public class Main {
         // 이분탐색을 배워왔다 해보자 이거야
         List<Integer> dp = new ArrayList<>();
         dp.add(ints[0]);
-        int current = 0;
         for (int i = 1; i < n; i++) {
             int target = ints[i];
-            if (dp.get(current) <= target) {
+            if (dp.get(dp.size() - 1) <= target) {
                 dp.add(target);
-                current++;
                 continue;
             }
             int left = 0;
             int right = dp.size() - 1;
-            int maxIdx = 0;
+            int minIdx = dp.size() - 1;
             while (left <= right) {
                 int mid = left + (right - left) / 2;
-                if (dp.get(mid) <= target) {
-                    left = mid + 1;
-                    maxIdx = Math.max(mid, maxIdx);
-                } else {
+                if (dp.get(mid) >= target) {
                     right = mid - 1;
+                    minIdx = Math.min(mid, minIdx);
+                } else {
+                    left = mid + 1;
                 }
             }
-            dp.set(maxIdx, ints[i]);
+            dp.set(minIdx, ints[i]);
         }
         System.out.println(dp.size());
 
