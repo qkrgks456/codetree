@@ -1,9 +1,11 @@
 
 
-import java.util.*;
-import java.util.List;
-import java.io.*;
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
 
 
 public class Main {
@@ -27,7 +29,11 @@ public class Main {
         int n1 = distance(1, 2);
         int n2 = distance(2, 3);
         int n3 = distance(1, 3);
-        System.out.println(Math.min(n1 + n2, Math.min(n1 + n3, n2 + n3)));
+        if (n1 == 1 && n2 == 1 && n3 == 1) {
+            System.out.println(1);
+        } else {
+            System.out.println(Math.min(n1 + n2, Math.min(n1 + n3, n2 + n3)));
+        }
 
 
     }
