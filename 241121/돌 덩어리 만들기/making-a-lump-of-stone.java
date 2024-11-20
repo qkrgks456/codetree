@@ -1,3 +1,5 @@
+
+
 import java.util.*;
 import java.util.List;
 import java.io.*;
@@ -47,25 +49,10 @@ public class Main {
         for (int i = 0; i < chars.length; i++) {
             for (int j = 0; j < chars[i].length; j++) {
                 if (markArray[i][j] == start) {
-                    if (checkStone(i, j, start)) {
-                        result = Math.min(result, disBFS(i, j, start, end));
-                    }
+                    int dis = disBFS(i, j, start, end);
+                    if (dis < 0) continue;
+                    result = Math.min(result, dis);
                 }
-            }
-        }
-        return result;
-    }
-
-    public static boolean checkStone(int x, int y, int start) {
-        int[] nx = {-1, 1, 0, 0};
-        int[] ny = {0, 0, 1, -1};
-        boolean result = false;
-        for (int i = 0; i < 4; i++) {
-            int dx = x + nx[i];
-            int dy = y + ny[i];
-            if (dx >= 0 && dy >= 0 && dx < markArray.length && dy < markArray[0].length && markArray[dx][dy] != start) {
-                result = true;
-                break;
             }
         }
         return result;
