@@ -1,5 +1,3 @@
-
-
 import java.util.*;
 import java.io.*;
 
@@ -21,17 +19,16 @@ public class Main {
         for (int i = 1; i <= n; i++) {
             prefix[i] = prefix[i - 1] + ints[i - 1];
         }
-        int[] maxPrefix = new int[n + 1];
-        maxPrefix[n] = prefix[n];
-        for (int i = n - 1; i >= 1; i--) {
-            maxPrefix[i] = Math.max(maxPrefix[i + 1], prefix[i]);
+        int maxPrefix = Integer.MIN_VALUE;
+        for (int i = 1; i <= n; i++) {
+            maxPrefix = Math.max(maxPrefix, prefix[i]);
         }
 
         // 최대합 계산
         int maxSum = Integer.MIN_VALUE;
         for (int i = k; i <= n; i++) {
             // 최소 k개의 원소를 포함한 구간합 계산
-            maxSum = Math.max(maxSum, maxPrefix[i] - prefix[i - k]);
+            maxSum = Math.max(maxSum, maxPrefix - prefix[i - k]);
         }
 
         // 결과 출력
