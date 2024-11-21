@@ -1,6 +1,6 @@
-import java.awt.*;
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -18,14 +18,13 @@ public class Main {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (i == n - 1 && j == n - 1) break;
-                if (dp[i][j] == 0) continue;
                 // 오른쪽
                 if (j + ints[i][j] < n) {
-                    dp[i][j + ints[i][j]] = dp[i][j + ints[i][j]] + 1;
+                    dp[i][j + ints[i][j]] += dp[i][j];
                 }
                 // 아래쪽
                 if (i + ints[i][j] < n) {
-                    dp[i + ints[i][j]][j] = dp[i + ints[i][j]][j] + 1;
+                    dp[i + ints[i][j]][j] += dp[i][j];
                 }
             }
         }
