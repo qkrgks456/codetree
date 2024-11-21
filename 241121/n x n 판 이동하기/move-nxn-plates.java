@@ -14,35 +14,21 @@ public class Main {
             }
         }
         int[][] dp = new int[n][n];
-        Queue<Point> queue = new LinkedList<>();
-        queue.add(new Point(0, 0));
-        boolean check = false;
-        while (!queue.isEmpty()) {
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
-                Point point = queue.poll();
-                if (point.x == n - 1 && point.y == n - 1) {
-                    check = true;
-                    continue;
-                }
-                int x = point.x;
-                int y = point.y;
+        dp[0][0] = 1;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == n - 1 && j == n - 1) break;
+                if (dp[i][j] == 0) continue;
                 // 오른쪽
-                if (y + ints[x][y] < n) {
-                    dp[x][y + ints[x][y]] = dp[x][y + ints[x][y]] + 1;
-                    queue.add(new Point(x, y + ints[x][y]));
+                if (j + ints[i][j] < n) {
+                    dp[i][j + ints[i][j]] = dp[i][j + ints[i][j]] + 1;
                 }
                 // 아래쪽
-                if (x + ints[x][y] < n) {
-                    dp[x + ints[x][y]][y] = dp[x + ints[x][y]][y] + 1;
-                    queue.add(new Point(x + ints[x][y], y));
+                if (i + ints[i][j] < n) {
+                    dp[i + ints[i][j]][j] = dp[i + ints[i][j]][j] + 1;
                 }
             }
-            if (check) break;
         }
-
         System.out.println(dp[n - 1][n - 1]);
-
-
     }
 }
