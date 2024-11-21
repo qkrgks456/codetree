@@ -16,24 +16,19 @@ public class Main {
 
         // 누적합이 필요하네 빼줘야 되니까 아하
         int[] prefix = new int[n];
-        int max = ints[0];
         prefix[0] = ints[0];
         for (int i = 1; i < n; i++) {
-            prefix[i] += prefix[i - 1] + ints[i];
-            max = Math.max(prefix[i], max);
+            prefix[i] = prefix[i - 1] + ints[i];
         }
         if (k == 1) {
-            System.out.println(max);
+            System.out.println(prefix[prefix.length - 1]);
             return;
         }
-        int result = 0;
-        for (int i = 0; i < k; i++) {
-            result += ints[i];
-        }
-        int start = 0;
+
+        int result = prefix[k - 1];
         for (int i = k; i < n; i++) {
-            result = Math.max(result, prefix[i] - prefix[start]);
-            start++;
+            // 최대값 갱신
+            result = Math.max(result, prefix[i] - prefix[i - k]);
         }
         System.out.println(result);
 
